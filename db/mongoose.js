@@ -1,13 +1,7 @@
-const mongoose = require('mongoose')
+var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/tokens', err => {
-	if(err) {
-		console.log(err)
-	} else {
-		console.log('We are connected to the database!')
-	}
-})
+mongoose.connect(process.env.MONGODB_URI);
 
-module.exports = { mongoose }
+module.exports = {mongoose};
