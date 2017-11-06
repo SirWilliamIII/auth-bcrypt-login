@@ -7,7 +7,6 @@ yarn-error.log*
 
 .idea/
 
-config/config.json
 
 .DS_Store
 # Runtime data

@@ -47,7 +47,7 @@ UserSchema.methods.generateAuthToken = function () {
 	const token = jwt.sign({
 		_id: user._id.toHexString(),
 		access
-	}, process.env.JWT_SECRET).toString()
+	}, 'secret').toString()
 
 	user.tokens.push({
 		access,
@@ -65,12 +65,9 @@ UserSchema.methods.removeToken = function(token) {
 
 	return user.update({
 		$pull: {
-			tokens: {
-				token
-			}
+			tokens: {token}
 		}
 	})
-
 }
 
 UserSchema.statics.findByToken = function (token) {
@@ -78,7 +75,7 @@ UserSchema.statics.findByToken = function (token) {
 	let decoded;
 
 	try {
-		decoded = jwt.verify(token, process.env.JWT_SECRET)
+		decoded = jwt.verify(token, 'secret')
 	} catch(e) {
 		return Promise.reject()
 	}
