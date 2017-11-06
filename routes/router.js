@@ -4,7 +4,7 @@ const _ = require('lodash')
 const { User } = require('../models/user')
 const { authenticate } = require('../middleware/authenticate')
 
-
+//it works
 router.post('/users', (req, res) => {
 
 	const body = _.pick(req.body, ['email', 'password'])
