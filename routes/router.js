@@ -41,6 +41,13 @@ router.post('/users/login', (req, res) => {
 	})
 })
 
+router.get('/users', (req, res) => {
+	User.find()
+		.then(user => {
+			res.send(user)
+		})
+})
+
 router.delete('/users/me/token', authenticate, (req, res) => {
 	req.user.removeToken(req.token)
 		.then(() => {
